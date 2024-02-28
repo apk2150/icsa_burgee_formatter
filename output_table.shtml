@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head><title>Test Table</title></head>
+<body>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>String</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>school</td>
+      <td><img src="Team Burgees/U of British Columbia-133.png" alt="school" width="100"></td>
+    </tr>
+    <tr>
+      <td>Harvard</td>
+      <td><img src="Team Burgees/Harvard Burgee-50.png" alt="Harvard" width="100"></td>
+    </tr>
+    <tr>
+      <td>Yale</td>
+      <td><img src="Team Burgees/Yale.png" alt="Yale" width="100"></td>
+    </tr>
+    <tr>
+      <td>standford</td>
+      <td><img src="Team Burgees/Stanford.png" alt="standford" width="100"></td>
+    </tr>
+    <tr>
+      <td>brown</td>
+      <td><img src="Team Burgees/Brown.png" alt="brown" width="100"></td>
+    </tr>
+    <tr>
+      <td>rwu</td>
+      <td><img src="Team Burgees/RWU.png" alt="rwu" width="100"></td>
+    </tr>
+    <tr>
+      <td>dartmouth</td>
+      <td><img src="Team Burgees/Dartmouth-110.png" alt="dartmouth" width="100"></td>
+    </tr>
+    <tr>
+      <td>coast guard</td>
+      <td><img src="Team Burgees/Coast Guard-123.png" alt="coast guard" width="100"></td>
+    </tr>
+    <tr>
+      <td>georgetown</td>
+      <td><img src="Team Burgees/Georgetown Burgee.png" alt="georgetown" width="100"></td>
+    </tr>
+    <tr>
+      <td>Pennsylvania</td>
+      <td><img src="Team Burgees/UPenn.png" alt="Pennsylvania" width="100"></td>
+    </tr>
+    <tr>
+      <td>naval accademy</td>
+      <td><img src="Team Burgees/Citadel.png" alt="naval accademy" width="100"></td>
+    </tr>
+    <tr>
+      <td>tufts</td>
+      <td><img src="Team Burgees/Tufts-123.png" alt="tufts" width="100"></td>
+    </tr>
+    <tr>
+      <td>st. marys college</td>
+      <td><img src="Team Burgees/Providence College-119.png" alt="st. marys college " width="100"></td>
+    </tr>
+    <tr>
+      <td>tulane</td>
+      <td><img src="Team Burgees/Tulane.png" alt="tulane" width="100"></td>
+    </tr>
+    <tr>
+      <td>boston colleges</td>
+      <td><img src="Team Burgees/U of Massachusetts at Boston-131.png" alt="boston colleges" width="100"></td>
+    </tr>
+    <tr>
+      <td>bowdoin</td>
+      <td><img src="Team Burgees/Bowdoin-107.png" alt="bowdoin" width="100"></td>
+    </tr>
+    <tr>
+      <td>college of charleston</td>
+      <td><img src="Team Burgees/U of Massachusetts at Boston-131.png" alt="college of charleston" width="100"></td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
