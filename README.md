@@ -1,3 +1,4 @@
-#ICSA Burgee Formatter
+# ICSA Burgee Formatter
+
 formatter so you can input a csv file with school names in the order you want and get out an html mockup with burgees next to school names in the original order
 
