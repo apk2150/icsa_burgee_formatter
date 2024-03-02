@@ -18,7 +18,7 @@
                 border-top: 3px solid white;
                 border-bottom: 3px solid white;
                 background-color: #009bc9;
-                color: white;
+                color: #ffffff;
             }
             .table img {
                 vertical-align: middle;

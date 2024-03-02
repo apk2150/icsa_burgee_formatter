@@ -8,12 +8,28 @@ import streamlit as st
 import difflib
 
 BACKGROUND_COLOR='#009bc9'
+TEXT_COLOR='#ffffff'
 def read_mapping_table(mapping_file):
+    """ 
+    Read mapping table from CSV file and return a dictionary mapping from the second column to the first column.
+    :param mapping_file: Path to the CSV file containing the mapping table.
+    :return: Dictionary mapping from the second column to the first column.
+    """
+    print(f"Reading mapping table from {mapping_file}")
     mapping_df = pd.read_csv(mapping_file, header=None)
     mapping = dict(zip(mapping_df[1], mapping_df[0]))
     return mapping
 
-def generate_html_table(mapping, folder, test_file, output_file):
+def generate_html_table(mapping, folder, test_file, output_file,background_color):
+    """
+    Generate an HTML table from a mapping dictionary and write it to a file.
+    :param mapping: Dictionary mapping from the second column to the first column.
+    :param folder: Path to the folder containing the images.
+    :param test_file: Path to the CSV file containing the test data.
+    :param output_file: Path to the output HTML file.
+    :param background_color: Background color of the table.
+    """
+
     test_df = pd.read_csv(test_file)
     # print(test_df.columns)
     rows = []
@@ -34,11 +50,11 @@ def generate_html_table(mapping, folder, test_file, output_file):
     rows=pd.DataFrame(rows).merge(test_df)
     # rows=test_df.merge(pd.DataFrame(rows),left_on='school', right_on='School')
 
-    print(rows.columns)
-    rows=rows.drop(columns=['fname', 'Team', 'A', 'Unnamed: 5', 'B','Unnamed: 7'])
+    # print(rows.columns)
+    # rows=rows.drop(columns=['fname', 'Team', 'A', 'Unnamed: 5', 'B','Unnamed: 7'])
     
-    rows=rows.rename(columns={'TOT': 'Points'})
-    print(rows.columns)
+    # rows=rows.rename(columns={'TOT': 'Points'})
+    # print(rows.columns)
 
     html_table = pd.DataFrame(rows).to_html(index=False, escape=False, 
                                             table_id='test_table', 
@@ -46,7 +62,7 @@ def generate_html_table(mapping, folder, test_file, output_file):
                                             header=True, 
                                             justify='left')
 
-    html_content = fhtml_content = f'''
+    html_content = f'''
     <!DOCTYPE html>
     <html>
     <head>
@@ -66,7 +82,7 @@ def generate_html_table(mapping, folder, test_file, output_file):
                 border-top: 3px solid white;
                 border-bottom: 3px solid white;
                 background-color: {BACKGROUND_COLOR};
-                color: white;
+                color: {TEXT_COLOR};
             }}
             .table img {{
                 vertical-align: middle;
@@ -84,27 +100,21 @@ def generate_html_table(mapping, folder, test_file, output_file):
         html_file.write(html_content)
     return html_content
 
+
+
 if __name__ == "__main__":
     mapping_table_file = 'file_names_mappingcompetitive.csv'
     folder_with_images = 'Team Burgees'
-    test_file = 'techscore.csv'
-    output_html_file = 'output_table.shtml'
+    test_file = 'test.csv'
+    output_html_file = 'output_table.html'
+
+    background_color = st.selectbox("Select Background Color", ["#009bc9", "white", "#0039a4", "lightgreen"])
+    print(background_color)
 
     mapping = read_mapping_table(mapping_table_file)
-    html_table=generate_html_table(mapping, folder_with_images, test_file, output_html_file)
-    print("output file:",output_html_file)
-
-
-     # Upload test.csv file
-    uploaded_file = st.file_uploader("Upload Test CSV", type=["csv"])
-    if uploaded_file is not None:
-        test_df = pd.read_csv(uploaded_file, header=None)
-
-        # Select background color
-        background_color = st.selectbox("Select Background Color", ["white", "lightgray", "lightblue", "lightgreen"])
-
-        mapping = read_mapping_table(mapping_table_file)
-        html_table = generate_html_table(mapping, folder_with_images, test_df, background_color)
-
-        # Display HTML table
-        st.markdown(html_table, unsafe_allow_html=True)
+    html_table=generate_html_table(mapping, folder_with_images, test_file, output_html_file, background_color)
+    
+    
+    # Streamlit app to run
+    st.title("Test Table")
+    st.markdown(html_table, unsafe_allow_html=True)
