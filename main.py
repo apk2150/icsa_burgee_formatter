@@ -3,6 +3,7 @@ import os
 import pandas as pd
 from fuzzywuzzy import process
 import streamlit as st
+import streamlit.components.v1 as components
 
 # from fuzzywuzzy import fuzzy
 import difflib
@@ -15,12 +16,11 @@ def read_mapping_table(mapping_file):
     :param mapping_file: Path to the CSV file containing the mapping table.
     :return: Dictionary mapping from the second column to the first column.
     """
-    print(f"Reading mapping table from {mapping_file}")
     mapping_df = pd.read_csv(mapping_file, header=None)
     mapping = dict(zip(mapping_df[1], mapping_df[0]))
     return mapping
 
-def generate_html_table(mapping, folder, test_file, output_file,background_color):
+def generate_html_table(mapping, folder, test_file, output_file,background_color,text_color,seperator_color):
     """
     Generate an HTML table from a mapping dictionary and write it to a file.
     :param mapping: Dictionary mapping from the second column to the first column.
@@ -29,7 +29,8 @@ def generate_html_table(mapping, folder, test_file, output_file,background_color
     :param output_file: Path to the output HTML file.
     :param background_color: Background color of the table.
     """
-
+    print(f"Generating HTML table")
+    
     test_df = pd.read_csv(test_file)
     # print(test_df.columns)
     rows = []
@@ -79,10 +80,10 @@ def generate_html_table(mapping, folder, test_file, output_file,background_color
                 padding: 8px;
                 text-align: left;
                 border:0px;
-                border-top: 3px solid white;
-                border-bottom: 3px solid white;
-                background-color: {BACKGROUND_COLOR};
-                color: {TEXT_COLOR};
+                border-top: 3px solid {seperator_color};
+                border-bottom: 3px solid {seperator_color};
+                background-color: {background_color};
+                color: {text_color};
             }}
             .table img {{
                 vertical-align: middle;
@@ -108,13 +109,23 @@ if __name__ == "__main__":
     test_file = 'test.csv'
     output_html_file = 'output_table.html'
 
-    background_color = st.selectbox("Select Background Color", ["#009bc9", "white", "#0039a4", "lightgreen"])
-    print(background_color)
+    background_color = st.selectbox("Select Background Color", ["#009bc9", "white", "#00394A",'#DBDCDD','#EE2E24'])
+    text_color = st.selectbox("Select Text Color", ["white", "#009bc9", "#00394A",'#DBDCDD','#EE2E24'])
+    seperator_color=st.selectbox("Select Seperator Color", ["white", "#009bc9", "#00394A", '#DBDCDD', '#EE2E24'])
+    
+    uploaded_file = st.file_uploader("Choose a csv",type='csv')
+    if uploaded_file is not None:
+        test_file= uploaded_file
 
-    mapping = read_mapping_table(mapping_table_file)
-    html_table=generate_html_table(mapping, folder_with_images, test_file, output_html_file, background_color)
-    
-    
-    # Streamlit app to run
-    st.title("Test Table")
-    st.markdown(html_table, unsafe_allow_html=True)
+        mapping = read_mapping_table(mapping_table_file)
+        html_table=generate_html_table(mapping, folder_with_images, test_file, output_html_file, background_color,text_color,seperator_color)
+        
+        
+        # Streamlit app to run
+        st.title("Test Table")
+        st.components.v1.html(html_table, height=800, scrolling=True)
+        # st.markdown(html_table, unsafe_allow_html=True)
+        st.download_button(
+        label="Download html for table",
+        data=html_table,
+        file_name='icsa_burgees_and_schools.html')
