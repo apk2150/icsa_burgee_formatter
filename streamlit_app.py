@@ -43,7 +43,7 @@ def generate_html_table(mapping, folder, test_file, output_file,background_color
             image_file = mapping[matched_string]
             image_path = os.path.join(folder, image_file)
             if os.path.exists(image_path):
-                rows.append({'': '<img src="{}" alt="{}" width="50">'.format(image_path, string), 'school': string})
+                rows.append({'': '<img src="https://raw.githubusercontent.com/apk2150/icsa_burgee_formatter/master/{}" alt="{}" width="50">'.format(image_path, string), 'school': string})
         else:
             print(f"Image file {image_file} not found for string: {string}")
     # print(rows)
@@ -84,6 +84,7 @@ def generate_html_table(mapping, folder, test_file, output_file,background_color
                 border-bottom: 3px solid {seperator_color};
                 background-color: {background_color};
                 color: {text_color};
+                overflow: hidden;
             }}
             .table img {{
                 vertical-align: middle;
@@ -109,10 +110,22 @@ if __name__ == "__main__":
     test_file = 'test.csv'
     output_html_file = 'output_table.html'
 
-    background_color = st.selectbox("Select Background Color", ["#009bc9", "white", "#00394A",'#DBDCDD','#EE2E24'])
-    text_color = st.selectbox("Select Text Color", ["white", "#009bc9", "#00394A",'#DBDCDD','#EE2E24'])
-    seperator_color=st.selectbox("Select Seperator Color", ["white", "#009bc9", "#00394A", '#DBDCDD', '#EE2E24'])
-    
+    col1, col2, col3, col4 = st.columns(4)
+
+    icsa_colors=[ "#009bc9", "#00394A", '#DBDCDD', '#EE2E24']
+    with col4:
+        st.markdown('ICSA Colors')
+        for color in icsa_colors:
+            st.markdown(f'<p style="color:{color};">{color}</p>',unsafe_allow_html=True)
+    with col1:
+        background_color = st.color_picker("Select Background Color", value="#009bc9")
+    # st.selectbox("Select Background Color", ["#009bc9", "white", "#00394A",'#DBDCDD','#EE2E24'])
+    with col2:
+        text_color = st.color_picker("Select Text Color", value="#ffffff")
+    with col3:
+        seperator_color=st.color_picker("Select Seperator Color", value="#ffffff")
+
+    st.markdown("Please upload a csvfile with the column name 'school' as the column header for the school name.  Additioanl columns will also be printed")
     uploaded_file = st.file_uploader("Choose a csv",type='csv')
     if uploaded_file is not None:
         test_file= uploaded_file
@@ -122,7 +135,6 @@ if __name__ == "__main__":
         
         
         # Streamlit app to run
-        st.title("Test Table")
         st.components.v1.html(html_table, height=800, scrolling=True)
         # st.markdown(html_table, unsafe_allow_html=True)
         st.download_button(

@@ -1,19 +1,19 @@
-place,fname,school,Team,A,,B,,TOT
-1,Stanford,Stanford University,Cardinal,37,,56,,93
-2,Yale,Yale University,Bulldogs,59,,47,,106
-3,Harvard,Harvard University,Crimson,49,,63,,112
-4,Georgetown,Georgetown University,Hoyas,50,,79,,129
-5,Dartmouth,Dartmouth College,Big Green,62,,67,,129
-6,Brown,Brown University,Bears,86,,51,,137
-7,Coast Guard,U. S. Coast Guard Academy,Bears,83,,63,,146
-8,Tufts,Tufts University,Jumbos,100,,66,,166
-9,Tulane,Tulane University,Green Wave,93,,78,,171
-10,Bowdoin,Bowdoin College,Polar Bears,104,,74,,178
-11,MIT,Massachusetts Institute of Technology,Engineers,96,,89,,185
-12,Fordham,Fordham University,Rams,102,,84,,186
-13,Boston College,Boston College,Eagles,90,,104,,194
-14,Rhode Island,University of Rhode Island,Rams,86,,124,,210
-15,Pennsylvania,University of Pennsylvania,Quakers,85,,130,,215
-16,U. Miami,University of Miami,Hurricanes,99,,123,,222
-17,St. Mary's,St. Mary's College of Maryland,Seahawks,109,,117,,226
-18,Navy,U. S. Naval Academy,Midshipmen,149,,124,,273
+place,school,Points
+1,Stanford University,93
+2,Yale University,106
+3,Harvard University,112
+4,Georgetown University,129
+5,Dartmouth College,129
+6,Brown University,137
+7,U. S. Coast Guard Academy,146
+8,Tufts University,166
+9,Tulane University,171
+10,Bowdoin College,178
+11,Massachusetts Institute of Technology,185
+12,Fordham University,186
+13,Boston College,194
+14,University of Rhode Island,210
+15,University of Pennsylvania,215
+16,University of Miami,222
+17,St. Mary's College of Maryland,226
+18,U. S. Naval Academy,273
