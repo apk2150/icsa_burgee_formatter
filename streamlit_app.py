@@ -125,7 +125,7 @@ if __name__ == "__main__":
     with col3:
         seperator_color=st.color_picker("Select Seperator Color", value="#ffffff")
 
-    st.markdown("Please upload a csvfile with the column name 'school' as the column header for the school name.  Additioanl columns will also be printed")
+    st.markdown("Please upload a csvfile with the column name 'school' as the column header for the school name.  Additional columns will also be printed. [Example file](https://github.com/apk2150/icsa_burgee_formatter/blob/012a2643ba4a5e083780e0db2d1931d580fde507/techscore.csv)")
     uploaded_file = st.file_uploader("Choose a csv",type='csv')
     if uploaded_file is not None:
         test_file= uploaded_file
