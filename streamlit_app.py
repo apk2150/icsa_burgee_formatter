@@ -58,7 +58,7 @@ def generate_html_table(mapping, folder, test_file, output_file,background_color
     # print(rows.columns)
     place_col=rows.pop('place')
 
-    rows.insert(0,'',place_col)
+    rows.insert(0,' ',place_col)
 
     html_table = pd.DataFrame(rows).to_html(index=False, escape=False, 
                                             table_id='test_table', 
