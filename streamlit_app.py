@@ -56,6 +56,8 @@ def generate_html_table(mapping, folder, test_file, output_file,background_color
     
     # rows=rows.rename(columns={'TOT': 'Points'})
     # print(rows.columns)
+    place_col=rows.pop('place')
+    rows.insert(0,'place',place_cols)
 
     html_table = pd.DataFrame(rows).to_html(index=False, escape=False, 
                                             table_id='test_table', 
